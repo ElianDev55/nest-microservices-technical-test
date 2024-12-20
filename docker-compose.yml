@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  # NATS server
+  nats-server:
+    image: nats:latest
+    ports:
+      - '8222:8222'
+
+  # PostgreSQL database
+  db:
+    container_name: test_db
+    image: postgres:12-alpine
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_USER: elian
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: test_db
+
+  # Client Gateway
+  client-gateway:
+    build: ./client-gateway
+    ports:
+      - '3005:3000'
+    volumes:
+      - ./client-gateway/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3000
+      - NATS_SERVERS=nats://nats-server:4222
+
+  # Products Microservice
+  products-ms:
+    depends_on:
+      - db
+    build: ./products-ms
+    volumes:
+      - ./products-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3001
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB_NAME=test_db
+      - POSTGRES_USERNAME=elian
+      - POSTGRES_PASSWORD=12345678
+      - NATS_SERVERS=nats://nats-server:4222
+      - PGADMIN_NAME=pgadmin_container
+      - PGADMIN_EMAIL=elian@gmail.com
+      - PGADMIN_PASSWORD=12345678
+
+  # Orders Microservice
+  orders-ms:
+    depends_on:
+      - db
+    build: ./orders-ms
+    volumes:
+      - ./orders-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3002
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB_NAME=test_db
+      - POSTGRES_USERNAME=elian
+      - POSTGRES_PASSWORD=12345678
+      - NATS_SERVERS=nats://nats-server:4222
+      - PGADMIN_NAME=pgadmin_container
+      - PGADMIN_EMAIL=elian@gmail.com
+      - PGADMIN_PASSWORD=12345678
+
+  # Notifications Microservice
+  notifications-ms:
+    build: ./notifications-ms
+    volumes:
+      - ./notifications-ms/src:/usr/src/app/src
+    command: npm run start:dev
+    environment:
+      - PORT=3003
+      - NATS_SERVERS=nats://nats-server:4222
+
+volumes:
+  postgres-vol:
