@@ -22,6 +22,8 @@ Los microservicios se comunican entre sí mediante NATS, un sistema de mensajer�
 
 Se utilizó una base de datos PostgreSQL con TypeORM para la gestión de datos.
 
+![Microservices Architecture](https://res.cloudinary.com/dw6vdykba/image/upload/v1734711159/o5klikmvz7jp7bv0upmp.jpg)
+
 ## Instalación
 
 1. Clona el repositorio:
