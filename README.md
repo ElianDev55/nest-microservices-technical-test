@@ -74,6 +74,10 @@ Para usar la aplicación, utiliza Postman con las siguientes rutas en `localhost
 }
 ```
 
+## Nota
+
+Hubo un problema al crear un microservicio para la tercera tabla en `Order` con `Product`, pero decidí que no sería necesario ya que es parte de `Order` y no es una funcionalidad nueva.
+
 ## Contribución
 
 Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request.
