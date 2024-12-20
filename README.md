@@ -92,4 +92,4 @@ Este proyecto no tiene una licencia específica.
 
 ## Video
 
-[![Video](https://res.cloudinary.com/dw6vdykba/video/upload/v1734711940/iek9ftqoyamrak
+[![Video](https://res.cloudinary.com/dw6vdykba/video/upload/v1734711940/iek9ftqoyamrak)]
