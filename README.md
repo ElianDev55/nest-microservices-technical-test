@@ -1,95 +1,95 @@
 # nest-microservices-technical-test
 
-## Descripción
+## Description
 
-Desarrollar un sistema básico de gestión de pedidos para una tienda en línea, implementado con una arquitectura de microservicios y diseñado para cumplir con los siguientes requisitos:
+Develop a basic order management system for an online store, implemented with a microservices architecture and designed to meet the following requirements:
 
-## Tecnologías Usadas
+## Technologies Used
 
 - **TypeScript**
-- **NestJS**: Framework para construir aplicaciones del lado del servidor
-- **Microservices**: Arquitectura de microservicios
+- **NestJS**: Framework for building server-side applications
+- **Microservices**: Microservices architecture
 
-## Estructura de Microservicios
+## Microservices Structure
 
-El gateway empieza en la ruta `localhost:3005`. Desde aquí, se pueden usar los siguientes microservicios:
+The gateway starts at the route `localhost:3005`. From here, the following microservices can be used:
 
-- **Products**: Inicializado en la ruta `localhost:3001`
-- **Orders**: Inicializado en la ruta `localhost:3002`
-- **Notification**: Inicializado en la ruta `localhost:3003`
+- **Products**: Initialized at the `localhost:3001` path
+- **Orders**: Initialized at the `localhost:3002` path
+- **Notification**: Initialized at the `localhost:3003` path
 
-Los microservicios se comunican entre sí mediante NATS, un sistema de mensajería ligero y de alto rendimiento que facilita la comunicación asincrónica y la escalabilidad.
+The microservices communicate with each other using NATS, a lightweight, high-performance messaging system that facilitates asynchronous communication and scalability.
 
-Se utilizó una base de datos PostgreSQL con TypeORM para la gestión de datos.
+A PostgreSQL database with TypeORM was used for data management.
 
 ![Microservices Architecture](https://res.cloudinary.com/dw6vdykba/image/upload/v1734711159/o5klikmvz7jp7bv0upmp.jpg)
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/ElianDev55/nest-microservices-technical-test.git
 ```
 
-2. Navega al directorio del proyecto:
+2. Navigate to the project directory:
 
 ```bash
 cd nest-microservices-technical-test
 ```
 
-3. Inicia Docker:
+3. Start Docker:
 
 ```bash
 docker-compose up
 ```
 
-## Uso
+## Usage
 
-Para usar la aplicación, utiliza Postman con las siguientes rutas en `localhost:3005`:
+To use the application, use Postman with the following paths on `localhost:3005`:
 
 - **Products**: `/products`
 - **Orders**: `/orders`
 
-### Ejemplo para crear un producto
+### Example to create a product
 
 ```json
 {
-  "name": "Iphone",
-  "price": 10.0,
-  "initial_stock": 100
+"name": "Iphone",
+"price": 10.0,
+"initial_stock": 100
 }
 ```
 
-### Ejemplo para crear una orden
+### Example for creating an order
 
 ```json
 {
-  "orderProduct": [
-    {
-      "productId": 1,
-      "quantity": 1000
-    }
-  ]
+"orderProduct": [
+{
+"productId": 1,
+"quantity": 1000
+}
+]
 }
 ```
 
-## Nota
+## Note
 
-Hubo un problema al crear un microservicio para la tercera tabla en `Order` con `Product`, pero decidí que no sería necesario ya que es parte de `Order` y no es una funcionalidad nueva.
+There was a problem creating a microservice for the third table in `Order` with `Product`, but I decided that it wouldn't be necessary since it is part of `Order` and is not a new feature.
 
-## Contribución
+## Contribution
 
-Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request.
+Contributions are welcome. Please open an issue or send a pull request.
 
-## Licencia
+## License
 
-Este proyecto no tiene una licencia específica.
+This project does not have a specific license.
 
-## Contacto
+## Contact
 
 - **GitHub**: [ElianDev55](https://github.com/ElianDev55)
 
 ## Video
 
-[![Video](https://res.cloudinary.com/dw6vdykba/video/upload/v1734711940/iek9ftqoyamrak)]
+[Watch this video here](https://res.cloudinary.com/dw6vdykba/video/upload/v1734711940/iek9ftqoyamrak6gvtrb.mp4)
